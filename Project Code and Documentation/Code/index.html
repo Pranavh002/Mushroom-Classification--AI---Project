@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    body {
+      background-image: url('/static/Wallpaper.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .top-right-text {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+
+    .top-right-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: black;
+    }
+
+    .about-section {
+      padding: 20px;
+      margin: 0 auto;
+      max-width: 600px;
+      color: white;
+    }
+    
+
+    /* Additional CSS for the new page */
+    .new-page {
+      margin-top: 100px;
+      padding: 100px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-right-text">
+    <span onclick="loadNewPage('new_page')">About</span> |
+    <span onclick="loadNewPage('images')">Image</span> |
+    <span onclick="redirectToPredict('input')">Predict</span>
+  </div>
+
+  <div class="top-right-center">
+    <div class="about-section">
+      <font size="10">Mushroom Classification<br>Using Transfer Learning</font>
+      <p>Through this project we will be able to classify various types of Mushroom</p>
+    </div>
+
+    <div class="mushroom-info">
+      <button onclick="loadNewPage('new_page')">About Mushrooms</button>
+    </div>
+  </div>
+  
+  <script>
+    function loadNewPage(page) {
+      window.location.href = '/' + page;
+    }
+
+    function redirectToPredict(page) {
+      window.location.href = '/' + page;
+    }
+  </script>
+</body>
+</html>
+
+
+

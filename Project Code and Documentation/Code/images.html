@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Images</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20vh;
+            background-color: rgb(238, 182, 79);
+        }
+
+        .heading {
+            position: absolute;
+            top: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .top-right-text {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+        }
+
+        .slideshow-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .slide-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .slide-item {
+            position: relative;
+        }
+
+        .slide-image {
+            position: relative;
+            width: 100%;
+            max-width: 90%;
+            height: auto;
+            object-fit: cover;
+            margin: 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .slide-image:hover {
+            opacity: 1;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .slide-item:hover .slide-caption {
+            opacity: 1;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+    <div class="heading">
+        <h1><u>Mushroom Images</u></h1>
+    </div>
+    <div class="top-right-text">
+        <span onclick="loadNewPage('new_page')">About</span> |
+        <span onclick="loadNewPage('images')">Image</span> |
+        <span onclick="redirectToPredict('input')">Predict</span>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="slide">
+            <div class="slide-row">
+                <div class="slide-item">
+                    <img class="slide-image" src="static/images/mushroom1.jpg" alt="Mushroom1" onclick="openImage('static/images/mushroom1.jpg')">
+                    <div class="slide-caption">Lactarius</div>
+                </div>
+                <div class="slide-item">
+                    <img class="slide-image" src="static/images/mushroom2.jpg" alt="Mushroom 2" onclick="openImage('static/images/mushroom2.jpg')">
+                    <div class="slide-caption">Boletus</div>
+                </div>
+                <div class="slide-item">
+                    <img class="slide-image" src="static/images/mushroom3.jpg" alt="Mushroom 3" onclick="openImage('static/images/mushroom3.jpg')">
+                    <div class="slide-caption">Russula</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var slideIndex = 0;
+        showSlide(slideIndex);
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            var slides = document.getElementsByClassName("slide");
+            if (n >= slides.length) {
+                slideIndex = 0;
+            } else if (n < 0) {
+                slideIndex = slides.length - 1;
+            }
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "block";
+        }
+
+        function loadNewPage(route) {
+            window.location.href = route;
+        }
+
+        function redirectToPredict(route) {
+            window.location.href = route;
+        }
+
+        function openImage(imageUrl) {
+            window.location.href = imageUrl;
+        }
+    </script>
+</body>
+</html>

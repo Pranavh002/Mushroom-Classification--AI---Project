@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        .heading {
+            background-position: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        body {
+            margin: 0; /* Remove default margin */
+            background-color: black;
+        }
+
+        .top-right-text {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+        }
+
+        .file-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .file-info {
+            margin-top: 10px;
+            color: white;
+        }
+
+
+        .classify {
+            margin-top: 20px;
+            color: rgb(100, 79, 79);
+            cursor: pointer;
+            background-color: black;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h1>Drop file to upload</h1>
+        <div class="file-container">
+            <form id="uploadForm" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" id="fileInput" style="display: none;">
+                <button type="button" onclick="document.getElementById('fileInput').click()">Choose File</button>
+                <span id="selectedFileName" class="file-info"></span>
+                <div class="classify">
+                    <button type="submit" class="classify">CLASSIFY</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="top-right-text">
+        <span onclick="loadNewPage('new_page')">About</span> |
+        <span onclick="loadNewPage('images')">Image</span> |
+        <span onclick="redirectToPredict('input')">Predict</span>
+    </div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+
+        function handleFileSelect(event) {
+            const fileList = event.target.files;
+            // Process the selected file(s) here
+            // You can access the file(s) using fileList variable
+            console.log(fileList);
+
+            // Display the file name near the "Choose File" button
+            const selectedFile = fileList[0];
+            const selectedFileName = selectedFile ? selectedFile.name : 'No file selected';
+            document.getElementById('selectedFileName').textContent = selectedFileName;
+        }
+
+        function loadNewPage(route) {
+            window.location.href = route;
+        }
+
+        function redirectToPredict(route) {
+            window.location.href = route;
+        }
+       
+    function loadNewPage(page) {
+      window.location.href = page;
+    }
+
+    function redirectToPredict(page) {
+      window.location.href = page; // Replace 'predict.html' with the desired page URL
+    }
+    </script>
+</body>
+</html>
